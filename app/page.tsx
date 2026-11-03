@@ -3,97 +3,72 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Play, CheckCircle, Star, Users, TrendingUp, Zap, Target, Globe, Brain, Rocket, Settings, Calendar, MessageSquare, BarChart3, Clock, Shield, Award } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
+
+const testimonials = [
+  {
+    quote: 'The whole system was built for us: the copy, the tools and the flows. It just worked.',
+    author: 'Sample client',
+    title: 'B2B SaaS CEO',
+  },
+  {
+    quote: 'It helped us reach mid-market accounts without hiring more reps.',
+    author: 'Sample client',
+    title: 'CMO',
+  },
+  {
+    quote: 'Our SDRs finally get warm leads without wasting time on prospecting.',
+    author: 'Sample client',
+    title: 'Head of Sales',
+  },
+];
+
+const caseResults = [
+  { company: 'DTC platform', result: 'Qualified calls booked from warm and cold outbound', icon: <TrendingUp className="w-6 h-6" /> },
+  { company: 'FinTech SaaS', result: 'Sales opportunities opened within the first two months', icon: <BarChart3 className="w-6 h-6" /> },
+  { company: 'HR tech company', result: 'New clients from cold outbound alone', icon: <Users className="w-6 h-6" /> },
+  { company: 'Remote-first agency', result: 'A new European market opened with discovery calls', icon: <Globe className="w-6 h-6" /> },
+];
+
+const processSteps = [
+  { title: "Discovery Call & Audit", icon: <MessageSquare className="w-8 h-8" /> },
+  { title: "Build: ICP, Tools, Offers, Playbooks", icon: <Settings className="w-8 h-8" /> },
+  { title: "Launch Campaigns", icon: <Rocket className="w-8 h-8" /> },
+  { title: "Deliver Leads to Calendar", icon: <Calendar className="w-8 h-8" /> },
+  { title: "Weekly Optimization", icon: <TrendingUp className="w-8 h-8" /> },
+  { title: "Scale & Expand", icon: <Target className="w-8 h-8" /> }
+];
+
+const faqs = [
+  {
+    question: "Do you write the copy and build the tools?",
+    answer: "Yes. Everything is done-for-you."
+  },
+  {
+    question: "What if outbound doesn't work for us?",
+    answer: "We review results every week and adjust the campaigns."
+  },
+  {
+    question: "How fast can we launch?",
+    answer: "We agree a launch plan on the discovery call."
+  },
+  {
+    question: "What's expected from our side?",
+    answer: "Just 1–2 onboarding calls. We do the rest."
+  }
+];
+
 
 export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [pipelineValue, setPipelineValue] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-
-  const testimonials = [
-    {
-      quote: "We had 12 qualified calls in our first 10 days. They built the entire system—copy, tools, flows. It just worked.",
-      author: "Amir K.",
-      title: "B2B SaaS CEO",
-      location: "Dubai",
-      flag: "🇦🇪"
-    },
-    {
-      quote: "HealGain helped us crack into U.S. mid-market accounts without hiring more reps. Our CAC dropped by 40%.",
-      author: "Julie M.",
-      title: "CMO",
-      location: "Paris",
-      flag: "🇫🇷"
-    },
-    {
-      quote: "Our SDRs love it. They finally get warm leads without wasting time on prospecting.",
-      author: "Derrick T.",
-      title: "Head of Sales",
-      location: "Austin TX",
-      flag: "🇺🇸"
-    }
-  ];
-
-  const caseResults = [
-    { company: "DTC Platform", result: "60 qualified calls in 90 days", icon: <TrendingUp className="w-6 h-6" /> },
-    { company: "FinTech SaaS", result: "125 sales opportunities in 2 months", icon: <BarChart3 className="w-6 h-6" /> },
-    { company: "HR Tech Company", result: "3 new clients per month from cold outbound alone", icon: <Users className="w-6 h-6" /> },
-    { company: "Remote-first agency", result: "Opened Europe market with 23 discovery calls/month", icon: <Globe className="w-6 h-6" /> }
-  ];
-
-  const processSteps = [
-    { title: "Discovery Call & Audit", icon: <MessageSquare className="w-8 h-8" /> },
-    { title: "Build: ICP, Tools, Offers, Playbooks", icon: <Settings className="w-8 h-8" /> },
-    { title: "Launch Campaigns", icon: <Rocket className="w-8 h-8" /> },
-    { title: "Deliver Leads to Calendar", icon: <Calendar className="w-8 h-8" /> },
-    { title: "Weekly Optimization", icon: <TrendingUp className="w-8 h-8" /> },
-    { title: "Scale & Expand", icon: <Target className="w-8 h-8" /> }
-  ];
-
-  const faqs = [
-    {
-      question: "Do you write the copy and build the tools?",
-      answer: "Yes. Everything is done-for-you."
-    },
-    {
-      question: "What if outbound doesn't work for us?",
-      answer: "We iterate until it does. You'll never be stuck with a non-performing funnel."
-    },
-    {
-      question: "How fast can we launch?",
-      answer: "Within 7–14 days post-onboarding."
-    },
-    {
-      question: "What's expected from our side?",
-      answer: "Just 1–2 onboarding calls. We do the rest."
-    }
-  ];
+  const [sent, setSent] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
-
-  useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(() => {
-        const increment = 200000000 / 100;
-        let current = 0;
-        const counter = setInterval(() => {
-          current += increment;
-          if (current >= 200000000) {
-            setPipelineValue(200000000);
-            clearInterval(counter);
-          } else {
-            setPipelineValue(Math.floor(current));
-          }
-        }, 20);
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [isVisible]);
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
@@ -126,9 +101,9 @@ export default function Home() {
               className="h-8 w-auto"
             />
           </div>
-          <button className="bg-gradient-to-r from-[#4985DE] to-[#C0A5EF] text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+          <a href="#book" className="inline-block bg-gradient-to-r from-[#4985DE] to-[#C0A5EF] text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
             Book Free Call
-          </button>
+          </a>
         </div>
       </header>
 
@@ -139,7 +114,7 @@ export default function Home() {
           <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#4985DE]/10 to-[#C0A5EF]/10 px-4 py-2 rounded-full mb-8 animate-fade-in">
             <Star className="w-4 h-4 text-[#4985DE] animate-spin" />
             <span className="text-sm font-medium bg-gradient-to-r from-[#4985DE] to-[#C0A5EF] bg-clip-text text-transparent">
-              Trusted by 500+ Companies Globally
+              Outbound systems for B2B teams
             </span>
             <Star className="w-4 h-4 text-[#C0A5EF] animate-spin" />
           </div>
@@ -171,34 +146,33 @@ export default function Home() {
             </span> powers B2B pipelines with precision-crafted outbound systems that never sleep—so your sales team can focus on closing, not chasing.
           </p>
 
-          {/* Pipeline Value Counter */}
+          {/* What you get */}
           <div className="mb-12">
             <div className="inline-block bg-gradient-to-r from-[#4985DE]/10 to-[#C0A5EF]/10 rounded-2xl p-8 animate-fade-in-up">
-              <div className="text-sm text-gray-600 mb-2">Pipeline Generated</div>
-              <div className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-[#4985DE] to-[#C0A5EF] bg-clip-text text-transparent">
-                ${(pipelineValue / 1000000).toFixed(0)}M+
+              <div className="text-sm text-gray-600 mb-2">What you get</div>
+              <div className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-[#4985DE] to-[#C0A5EF] bg-clip-text text-transparent">
+                Done-for-you outbound
               </div>
-              <div className="text-sm text-gray-500 mt-2">For our clients worldwide</div>
+              <div className="text-sm text-gray-500 mt-2">Copy, tools, flows and weekly optimization</div>
             </div>
           </div>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <button className="group bg-gradient-to-r from-[#4985DE] to-[#C0A5EF] text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center space-x-2">
+            <a href="#book" className="group bg-gradient-to-r from-[#4985DE] to-[#C0A5EF] text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 inline-flex items-center space-x-2">
               <Calendar className="w-5 h-5" />
               <span>Book a Free Strategy Call</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="group border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-semibold text-lg hover:border-[#4985DE] hover:text-[#4985DE] transition-all duration-300 flex items-center space-x-2">
+            </a>
+            <a href="#process" className="group border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-semibold text-lg hover:border-[#4985DE] hover:text-[#4985DE] transition-all duration-300 inline-flex items-center space-x-2">
               <Play className="w-5 h-5" />
               <span>See How We Work</span>
-            </button>
+            </a>
           </div>
 
           {/* Trust Indicators */}
           <div className="text-center">
-            <p className="text-gray-500 mb-6">Trusted by Founders, CMOs, and SDR Teams Globally</p>
-            <p className="text-sm text-gray-400">Partnered with the best GTM platforms across Europe, UAE, and the U.S.</p>
+            <p className="text-gray-500">Built for founders, CMOs, and SDR teams</p>
           </div>
         </div>
       </section>
@@ -207,12 +181,12 @@ export default function Home() {
       <section className="py-20 px-6 bg-gradient-to-r from-gray-50 to-gray-100">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8">
-            <span className="text-red-600">"The old outbound playbook is broken."</span>
+            <span className="text-red-600">&ldquo;The old outbound playbook is broken.&rdquo;</span>
           </h2>
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
               <div className="text-red-500 text-4xl mb-4">❌</div>
-              <h3 className="font-semibold mb-2">Spray-and-pray doesn't work</h3>
+              <h3 className="font-semibold mb-2">Spray-and-pray doesn&apos;t work</h3>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
               <div className="text-red-500 text-4xl mb-4">😴</div>
@@ -224,7 +198,7 @@ export default function Home() {
             </div>
           </div>
           <p className="text-xl text-gray-700 max-w-4xl mx-auto">
-            We've helped clients unlock <span className="font-bold text-[#4985DE]">over $200M+ in pipeline</span> with our high-touch <span className="font-bold bg-gradient-to-r from-[#4985DE] to-[#C0A5EF] bg-clip-text text-transparent">Precision Outbound</span> framework—combining data, automation, and intent.
+            Our high-touch <span className="font-bold bg-gradient-to-r from-[#4985DE] to-[#C0A5EF] bg-clip-text text-transparent">Precision Outbound</span> framework combines data, automation, and intent.
           </p>
         </div>
       </section>
@@ -234,7 +208,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              The HealGain Model: <span className="bg-gradient-to-r from-[#4985DE] to-[#C0A5EF] bg-clip-text text-transparent">Precision Outbound™</span>
+              The HealGain Model: <span className="bg-gradient-to-r from-[#4985DE] to-[#C0A5EF] bg-clip-text text-transparent">Precision Outbound</span>
             </h2>
             <p className="text-xl text-gray-600">A modern hybrid between <strong>warm intent</strong> and <strong>cold signals</strong>, built for scale.</p>
           </div>
@@ -343,7 +317,7 @@ export default function Home() {
             </div>
             
             <div className="bg-white p-8 rounded-2xl shadow-xl">
-              <h3 className="text-2xl font-bold mb-6">If you're:</h3>
+              <h3 className="text-2xl font-bold mb-6">If you&apos;re:</h3>
               <ul className="space-y-4">
                 <li className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-[#4985DE] rounded-full"></div>
@@ -358,11 +332,11 @@ export default function Home() {
                   <span>Struggling with SDR churn</span>
                 </li>
               </ul>
-              <p className="mt-6 font-semibold">Let's build your outbound machine.</p>
-              <button className="mt-4 bg-gradient-to-r from-[#4985DE] to-[#C0A5EF] text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center space-x-2">
+              <p className="mt-6 font-semibold">Let&apos;s build your outbound machine.</p>
+              <a href="#book" className="mt-4 bg-gradient-to-r from-[#4985DE] to-[#C0A5EF] text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center space-x-2">
                 <Calendar className="w-5 h-5" />
                 <span>Schedule your free call</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -404,19 +378,19 @@ export default function Home() {
       {/* Testimonials */}
       <section className="py-20 px-6 bg-gradient-to-r from-gray-50 to-gray-100">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-16">Client Testimonials</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Sample Testimonials</h2>
+          <p className="text-gray-600 mb-12">Illustrative quotes, not from real clients.</p>
           
           <div className="relative">
             <div className="bg-white p-8 rounded-2xl shadow-xl">
-              <div className="text-4xl mb-6">💬</div>
+              <div className="text-4xl mb-6" aria-hidden="true">💬</div>
               <blockquote className="text-xl italic mb-6">
-                "{testimonials[currentTestimonial].quote}"
+                &ldquo;{testimonials[currentTestimonial].quote}&rdquo;
               </blockquote>
               <div className="flex items-center justify-center space-x-2">
-                <span className="text-2xl">{testimonials[currentTestimonial].flag}</span>
                 <div>
                   <div className="font-bold">{testimonials[currentTestimonial].author}</div>
-                  <div className="text-gray-600">{testimonials[currentTestimonial].title}, {testimonials[currentTestimonial].location}</div>
+                  <div className="text-gray-600">{testimonials[currentTestimonial].title}</div>
                 </div>
               </div>
             </div>
@@ -426,6 +400,8 @@ export default function Home() {
               {testimonials.map((_, index) => (
                 <button
                   key={index}
+                  type="button"
+                  aria-label={`Show sample quote ${index + 1}`}
                   onClick={() => setCurrentTestimonial(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentTestimonial 
@@ -473,7 +449,7 @@ export default function Home() {
                   <tr className="border-b hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4 font-semibold">Results</td>
                     <td className="px-6 py-4 text-red-600">Slow, inconsistent</td>
-                    <td className="px-6 py-4 text-green-600">Pipeline in 30–45 days</td>
+                    <td className="px-6 py-4 text-green-600">Pipeline built and reviewed week by week</td>
                   </tr>
                   <tr className="hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4 font-semibold">Team Focus</td>
@@ -490,7 +466,8 @@ export default function Home() {
       {/* Case Results */}
       <section className="py-20 px-6 bg-gradient-to-r from-gray-50 to-gray-100">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">Case Results</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Sample Case Scenarios</h2>
+          <p className="text-center text-gray-600 mb-12">Illustrative scenarios, not real results.</p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {caseResults.map((result, index) => (
@@ -509,7 +486,7 @@ export default function Home() {
       </section>
 
       {/* Process */}
-      <section className="py-20 px-6">
+      <section id="process" className="py-20 px-6 scroll-mt-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">Our Process</h2>
           
@@ -559,13 +536,49 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center text-white">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to unlock scalable outbound growth?</h2>
           <p className="text-xl mb-8 opacity-90">
-            We'll show you how we build outbound systems for companies just like yours—with results that speak for themselves.
+            We&apos;ll show you how we build outbound systems for companies like yours.
           </p>
-          <button className="bg-white text-[#4985DE] px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center space-x-2 mx-auto">
+          <a href="#book" className="bg-white text-[#4985DE] px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 inline-flex items-center space-x-2">
             <Calendar className="w-5 h-5" />
             <span>Schedule Your Free Strategy Call</span>
             <ArrowRight className="w-5 h-5" />
-          </button>
+          </a>
+        </div>
+      </section>
+
+      {/* Booking form (sample) */}
+      <section id="book" className="py-20 px-6 scroll-mt-4">
+        <div className="max-w-xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">Book a Free Call</h2>
+          <p className="text-center text-gray-600 mb-8">This is a sample form. Nothing is sent or stored.</p>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              setSent(true);
+            }}
+            className="bg-white rounded-2xl shadow-xl p-8 space-y-5"
+          >
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+              <input id="name" name="name" type="text" required autoComplete="name" className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#4985DE]" />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Work email</label>
+              <input id="email" name="email" type="email" required autoComplete="email" className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#4985DE]" />
+            </div>
+            <div>
+              <label htmlFor="goal" className="block text-sm font-medium text-gray-700 mb-1">What would you like from outbound?</label>
+              <textarea id="goal" name="goal" rows={4} className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#4985DE]" />
+            </div>
+            <button type="submit" className="w-full bg-gradient-to-r from-[#4985DE] to-[#C0A5EF] text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all duration-300">
+              Send request
+            </button>
+            {sent && (
+              <p role="status" className="bg-gray-100 rounded-lg px-4 py-3 text-gray-700">
+                Thank you. This is a sample site, so nothing was sent and nothing was stored.
+              </p>
+            )}
+          </form>
         </div>
       </section>
 
@@ -588,6 +601,7 @@ export default function Home() {
             />
           </div>
           <p className="text-gray-400">© 2025 HealGain. All rights reserved.</p>
+          <p className="mt-3 text-sm"><Link href="/privacy" className="text-gray-300 underline hover:text-white">Privacy</Link></p>
         </div>
       </footer>
     </div>

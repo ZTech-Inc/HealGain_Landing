@@ -1,5 +1,7 @@
 # HealGain Landing Page
 
+> Content note: the testimonials and case scenarios are illustrative samples, not real client results. Replace them with real, approved material before going live. The booking form is a sample and sends nothing.
+
 A high-converting, animated landing page for HealGain - an outbound marketing agency that builds scalable outbound engines for tech startups, agencies, and B2B companies.
 
 ## 🚀 Features
@@ -7,9 +9,9 @@ A high-converting, animated landing page for HealGain - an outbound marketing ag
 - **Modern Design**: Apple-level aesthetics with gradient color schemes
 - **Responsive**: Optimized for all devices (mobile, tablet, desktop)
 - **Animated**: Engaging animations and micro-interactions
-- **High-Converting**: Optimized for expatriate audiences from USA, UAE, and Europe
+- **Clear offer**: one page, one booking call to action
 - **Performance**: Built with Next.js for optimal loading speeds
-- **Accessible**: WCAG compliant with proper focus states
+- **Accessible basics**: labelled form fields, visible focus states and a reduced-motion rule (not audited against WCAG)
 
 ## 🎨 Design System
 
@@ -97,31 +99,25 @@ healgain-landing/
 ### Hero Section
 - Animated logo with glow effects
 - Typewriter-style headlines
-- Interactive stats counter ($200M+ pipeline)
+- A "What you get" card
 - Dual CTA buttons
 
 ### Interactive Elements
 - Rotating testimonials carousel
-- Animated comparison table
-- FAQ accordion
+- Comparison table
+- FAQ list
 - Process steps with icons
 - Hover effects on cards
 
 ### Conversion Features
 - Multiple strategic CTAs
-- Social proof elements
-- Case study results
-- Trust indicators
-- Geographic testimonials (Dubai, Paris, Austin)
+- Sample testimonials and sample case scenarios, labelled as illustrative
+- A sample booking form that sends and stores nothing
+- A privacy page
 
 ## 🌍 Target Audience
 
-The landing page is specifically designed for:
-
-- **Tech-savvy expatriates** from USA, UAE, and Europe
-- **B2B decision makers** (Founders, CMOs, Sales Leaders)
-- **ROI-driven professionals** seeking scalable solutions
-- **Companies** with $1M+ ARR looking for outbound growth
+Tech startups and SaaS founders, agencies, remote B2B companies with long sales cycles, and SDR teams, as written on the page.
 
 ## 🎨 Customization
 
