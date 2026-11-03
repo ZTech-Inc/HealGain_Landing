@@ -28,10 +28,9 @@ A high-converting, animated landing page for HealGain - an outbound marketing ag
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 13.5.1
+- **Framework**: Next.js 16 (static export), React 19
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **UI Components**: shadcn/ui
 - **Icons**: Lucide React
 - **Animations**: Custom CSS animations + Tailwind utilities
 
@@ -39,7 +38,7 @@ A high-converting, animated landing page for HealGain - an outbound marketing ag
 
 Before you begin, ensure you have the following installed:
 
-- **Node.js**: Version 16.0 or higher
+- **Node.js**: Version 20.0 or higher
 - **npm**: Version 7.0 or higher (comes with Node.js)
 - **Git**: For version control
 
@@ -80,14 +79,13 @@ healgain-landing/
 ├── app/
 │   ├── globals.css          # Global styles and animations
 │   ├── layout.tsx           # Root layout with metadata
-│   └── page.tsx             # Main landing page component
-├── components/
-│   └── ui/                  # shadcn/ui components
-├── lib/
-│   └── utils.ts             # Utility functions
+│   ├── not-found.tsx        # The 404 page
+│   ├── page.tsx             # Main landing page component
+│   └── privacy/page.tsx     # Privacy page
 ├── public/
 │   ├── healgain logo.svg    # Company logo
 │   └── HealGain Text.svg    # Company text logo
+├── eslint.config.mjs        # ESLint flat config (npm run lint)
 ├── package.json
 ├── tailwind.config.ts       # Tailwind configuration
 ├── tsconfig.json           # TypeScript configuration

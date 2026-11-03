@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Play, CheckCircle, Star, Users, TrendingUp, Zap, Target, Globe, Brain, Rocket, Settings, Calendar, MessageSquare, BarChart3, Clock, Shield, Award } from 'lucide-react';
+import { ArrowRight, Play, CheckCircle, Star, Users, TrendingUp, Zap, Target, Globe, Brain, Rocket, Settings, Calendar, MessageSquare, BarChart3 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
